@@ -54,6 +54,13 @@ public class PdfFileActivity extends BaseActivityBinding<ActivityPdfFileBinding>
 
     @Override
     protected void initViews(Bundle bundle) {
+        getSupportActionBar().hide();
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         adapter = new PDFListAdapter(this);
         adapter.setListener(new PDFListAdapter.OnClickFileItem() {
             @Override

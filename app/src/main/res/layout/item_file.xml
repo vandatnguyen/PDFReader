@@ -26,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_file_pdf" />
+            android:src="@drawable/ic_file_pdf" />
 
         <LinearLayout
             android:id="@+id/ll_folder_info"

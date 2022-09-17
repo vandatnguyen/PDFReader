@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PDFListAdapter extends RecyclerView.Adapter<PDFListAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<PDFFile> listData;
+    private ArrayList<PDFFile> listData = new ArrayList<>();
     private OnClickFileItem listener;
 
     public PDFListAdapter(Context context) {

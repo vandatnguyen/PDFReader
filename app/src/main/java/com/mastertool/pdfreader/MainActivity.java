@@ -3,8 +3,11 @@ package com.mastertool.pdfreader;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,6 +17,8 @@ import androidx.viewbinding.ViewBinding;
 import com.mastertool.pdfreader.base.BaseActivityBinding;
 import com.mastertool.pdfreader.databinding.ActivityMainBinding;
 import com.mastertool.pdfreader.dialog.InputLinkDialog;
+import com.mastertool.pdfreader.vip.activities.IAPActivity;
+import com.rajat.pdfviewer.PdfViewerActivity;
 
 public class MainActivity extends BaseActivityBinding<ActivityMainBinding> {
 
@@ -29,6 +34,8 @@ public class MainActivity extends BaseActivityBinding<ActivityMainBinding> {
 
     @Override
     protected void initViews(Bundle bundle) {
+        getSupportActionBar().hide();
+
         binding.btnUpgrade.setOnClickListener(view -> {
            updatePremium();
         });
@@ -68,15 +75,19 @@ public class MainActivity extends BaseActivityBinding<ActivityMainBinding> {
     }
 
     private void updatePremium() {
-        // TODO: 07/09/2022
-        Toast.makeText(this, "Features under development", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, IAPActivity.class));
     }
 
     private void inputLink() {
         new InputLinkDialog(this, link -> {
-            Intent intent = new Intent(MainActivity.this, PdfActivity.class);
-            intent.putExtra("PDF_URL", link);
-            startActivity(intent);
+            startActivity(PdfViewerActivity.Companion.launchPdfFromUrl(
+                    this,
+                    link,
+                    "PDF File",
+                    "Load PDF file link",
+                    false
+            ));
+            ;
         }).show();
 
     }

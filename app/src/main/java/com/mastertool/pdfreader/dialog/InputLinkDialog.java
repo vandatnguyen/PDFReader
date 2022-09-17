@@ -45,6 +45,7 @@ public class InputLinkDialog extends BaseDialog {
                 return;
             }
             callback.doOpen(link);
+            dimiss();
         });
     }
 
